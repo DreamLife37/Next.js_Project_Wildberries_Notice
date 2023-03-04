@@ -3,11 +3,58 @@ import Image from 'next/image'
 import {Inter} from '@next/font/google'
 // import styles from '@/styles/Home.module.css'
 import styles from '../styles/style.module.css'
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {ItemService} from "@/app/services/item.service";
+import Link from 'next/link';
+import axios from 'axios';
 
 const inter = Inter({subsets: ['latin']})
 
+export interface IItem {
+    _id: string
+    id: number
+    name: string
+    price: Price[]
+    __v: number
+}
+
+export interface Price {
+    price: number
+    _id: string
+    date: string
+}
+
+
 export default function Home({items}) {
-    console.log(items);
+
+    const client = useQueryClient()
+    const {isLoading, data, error, isSuccess} = useQuery({
+        queryFn: () => ItemService.getAll(),
+        queryKey: ['item list'],
+        onError: (err) => {
+            console.log('err.message', err.message)
+        }
+    })
+    console.log(data);
+
+    const deleteItem = useMutation({
+        mutationFn: (id) => ItemService.deleteOne(id),
+        onSuccess(data) {
+            client.invalidateQueries({queryKey: ['item list']});
+        }
+    });
+
+    const changePrice = (oldPrice: number, newPrice: number) => {
+        let percentageChange
+        let textPriceChanged
+        if (oldPrice !== newPrice) {
+            percentageChange = Math.floor((newPrice - oldPrice) / oldPrice * 100)
+            if (oldPrice > newPrice) return textPriceChanged = `↓ на ${percentageChange} %`
+            if (oldPrice < newPrice) return textPriceChanged = `↑ на ${percentageChange} %`
+        }
+    }
+
+
     return (
         <>
             <Head>
@@ -18,7 +65,8 @@ export default function Home({items}) {
                     <div className={styles.header__wrapper}>
                         <div className={styles.header__logo}>
                             <a href="https://devandreyit.ru/" className={styles.header__logo_link}>
-                                <svg className={styles.header__logo_img} width="226" height="35" viewBox="0 0 226 35"
+                                <svg className={styles.header__logo_img} width="226" height="35"
+                                     viewBox="0 0 226 35"
                                      fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -41,7 +89,7 @@ export default function Home({items}) {
                                     Подпишись на изменение цены
                                 </h1>
                                 <div className={styles.into__subtitle}>
-                                    Telegram бот пришлет уведомление, а ты покупай товар со скидкой
+                                    Telegram бот пришлет уведомление
                                 </div>
                             </div>
                             <Image className={styles.intro__phone}
@@ -66,13 +114,35 @@ export default function Home({items}) {
                 <section className={styles.list_items}>
                     <div className={styles.wrapper}>
                         <div className={styles.list_items__title}>Список отслеживаемых товаров</div>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem dolores hic maxime obcaecati
-                        odit
-                        praesentium
-                        quibusdam ratione repudiandae tempore. Blanditiis consequuntur corporis dolorem magni non
-                        obcaecati
-                        quaerat
-                        recusandae voluptas.
+                        {isLoading
+                            ? <div>...isLoading</div>
+                            : data?.data.length
+                                ? data.data.map((item) => {
+                                    const oldPriceData = item.price[item.price.length - 2]
+                                    const newPriceData = item.price[item.price.length - 1]
+                                    return <div key={item._id} className={styles.item}>
+                                        <Link href={`https://www.wildberries.ru/catalog/${item.id}/detail.aspx`}>
+                                            {item.name}
+                                        </Link>
+                                        <div className={styles.prices}>
+                                            {item.price.length > 1 &&
+                                                <div className={styles.oldPrice}>{oldPriceData.price} руб </div>}
+                                            <div className={styles.newPrice}>{newPriceData.price} руб</div>
+                                            {item.price.length > 1 && <div
+                                                className={styles.changePrice}>{changePrice(oldPriceData.price, newPriceData.price)}
+                                            </div>}
+                                        </div>
+                                        <div onClick={() => deleteItem.mutate(item.id)} className={styles.removeOne}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960"
+                                                 width="48">
+                                                <path
+                                                    d="M261 936q-24.75 0-42.375-17.625T201 876V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438V306ZM367 790h60V391h-60v399Zm166 0h60V391h-60v399ZM261 306v570-570Z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                })
+                                : <div>Товары не найдены</div>
+                        }
                     </div>
                 </section>
             </main>
@@ -81,14 +151,14 @@ export default function Home({items}) {
     )
 }
 
-export const getStaticProps = async () => {
-    const response = await fetch('http://localhost:5000/api/items')
-
-    const items = await response.json()
-    return {
-        props: {
-            items
-        },
-        revalidate: 10,
-    }
-}
+// export const getStaticProps = async () => {
+//     const response = await fetch('http://localhost:5000/api/items')
+//
+//     const items = await response.json()
+//     return {
+//         props: {
+//             items
+//         },
+//         revalidate: 10,
+//     }
+// }
