@@ -7,10 +7,18 @@ axios.defaults.baseURL = API_URL
 
 export const ItemService = {
     async getAll() {
-        return axios.get<IItem[]>('/items3')
+        return axios.get<IItem[]>('/items')
     },
 
-    async deleteOne(id:number) {
+    async addItem(id: number) {
+        return axios.post('/items', {id},{
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    },
+
+    async deleteOne(id: number) {
         return axios.delete(`/items/${id}`)
     }
 }

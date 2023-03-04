@@ -7,6 +7,7 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {ItemService} from "@/app/services/item.service";
 import Link from 'next/link';
 import axios from 'axios';
+import {useState} from "react";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -27,6 +28,9 @@ export interface Price {
 
 export default function Home({items}) {
 
+    const [id, setId] = useState<string>('')
+    console.log(id)
+
     const client = useQueryClient()
     const {isLoading, data, error, isSuccess} = useQuery({
         queryFn: () => ItemService.getAll(),
@@ -39,10 +43,18 @@ export default function Home({items}) {
 
     const deleteItem = useMutation({
         mutationFn: (id) => ItemService.deleteOne(id),
-        onSuccess(data) {
+        onSuccess: (data) => {
             client.invalidateQueries({queryKey: ['item list']});
         }
     });
+
+    const addItem = useMutation({
+        mutationFn: (id) => ItemService.addItem(id),
+        onSuccess: () => {
+            client.invalidateQueries({queryKey: ['item list']}),
+            setId('')
+        }
+    })
 
     const changePrice = (oldPrice: number, newPrice: number) => {
         let percentageChange
@@ -99,15 +111,17 @@ export default function Home({items}) {
                                    alt={'Phone'}
                                    draggable={false}/>
                         </div>
-                        <form className={styles.added_form}>
+                        <div className={styles.added_form}>
                             <p className={styles.added_form__wrap}>
                                 <input type="text" className={styles.added_form__field}
-                                       placeholder="Введи артикул для отслеживания"/>
-                                <button className={styles.added_form__button}>
+                                       placeholder="Введи артикул для отслеживания"
+                                       value={id}
+                                       onChange={(e) => setId(e.currentTarget.value)}/>
+                                <button className={styles.added_form__button} onClick={() => addItem.mutate(+id)}>
                                     Добавить
                                 </button>
                             </p>
-                        </form>
+                        </div>
                     </div>
                 </section>
 
