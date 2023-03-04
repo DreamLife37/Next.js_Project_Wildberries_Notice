@@ -57,14 +57,18 @@ export default function Home() {
         let textPriceChanged
         if (oldPrice !== newPrice) {
             percentageChange = Math.floor((newPrice - oldPrice) / oldPrice * 100)
-            if (oldPrice > newPrice) return textPriceChanged = `↓ на ${percentageChange} %`
-            if (oldPrice < newPrice) return textPriceChanged = `↑ на ${percentageChange} %`
+            if (oldPrice > newPrice) return <div className={styles.priceDown}>{`↓ на ${percentageChange} %`}</div>
+            if (oldPrice < newPrice) return <div className={styles.priceUp}>{`↑ на ${percentageChange} %`}</div>
         }
     }
 
     return (
         <>
             <Head>
+                <title>Wildberries Notice </title>
+                <meta name="description" content="Получай уведомления в телеграм"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <link rel="icon" href="/favicon.ico"/>
             </Head>
 
             <div className={styles.header}>
@@ -82,7 +86,7 @@ export default function Home() {
                                 </svg>
                             </a>
                         </div>
-                        <div className={styles.header__free}>Бесплатно</div>
+                        {/*<div className={styles.header__free}>Бесплатно</div>*/}
                     </div>
                 </div>
             </div>
@@ -122,36 +126,41 @@ export default function Home() {
 
                 <section className={styles.list_items}>
                     <div className={styles.wrapper}>
+
                         <div className={styles.list_items__title}>Список отслеживаемых товаров</div>
-                        {isLoading
-                            ? <div>...isLoading</div>
-                            : data?.data.length
-                                ? data.data.map((item) => {
-                                    const oldPriceData = item.price[item.price.length - 2]
-                                    const newPriceData = item.price[item.price.length - 1]
-                                    return <div key={item._id} className={styles.item}>
-                                        <Link href={`https://www.wildberries.ru/catalog/${item.id}/detail.aspx`}>
-                                            {item.name}
-                                        </Link>
-                                        <div className={styles.prices}>
-                                            {item.price.length > 1 &&
-                                                <div className={styles.oldPrice}>{oldPriceData.price} руб </div>}
-                                            <div className={styles.newPrice}>{newPriceData.price} руб</div>
-                                            {item.price.length > 1 && <div
-                                                className={styles.changePrice}>{changePrice(oldPriceData.price, newPriceData.price)}
-                                            </div>}
+                        <div className={styles.list_items__wrapper}>
+                            {isLoading
+                                ? <div>...isLoading</div>
+                                : data?.data.length
+                                    ? data.data.map((item) => {
+                                        const oldPriceData = item.price[item.price.length - 2]
+                                        const newPriceData = item.price[item.price.length - 1]
+                                        return <div key={item._id} className={styles.item}>
+                                            <Link href={`https://www.wildberries.ru/catalog/${item.id}/detail.aspx`}>
+                                                {item.name}
+                                            </Link>
+                                            <div className={styles.prices}>
+                                                {item.price.length > 1 &&
+                                                    <div className={styles.oldPrice}>{oldPriceData.price} руб </div>}
+                                                <div className={styles.newPrice}>{newPriceData.price} руб</div>
+                                                {item.price.length > 1 && <div
+                                                    className={styles.changePrice}>{changePrice(oldPriceData.price, newPriceData.price)}
+                                                </div>}
+                                            </div>
+                                            <div onClick={() => deleteItem.mutate(item.id)}
+                                                 className={styles.removeOne}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24"
+                                                     viewBox="0 96 960 960"
+                                                     width="48">
+                                                    <path
+                                                        d="M261 936q-24.75 0-42.375-17.625T201 876V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438V306ZM367 790h60V391h-60v399Zm166 0h60V391h-60v399ZM261 306v570-570Z"/>
+                                                </svg>
+                                            </div>
                                         </div>
-                                        <div onClick={() => deleteItem.mutate(item.id)} className={styles.removeOne}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960"
-                                                 width="48">
-                                                <path
-                                                    d="M261 936q-24.75 0-42.375-17.625T201 876V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Zm438-630H261v570h438V306ZM367 790h60V391h-60v399Zm166 0h60V391h-60v399ZM261 306v570-570Z"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                })
-                                : <div>Товары не найдены</div>
-                        }
+                                    })
+                                    : <div>Товары не найдены</div>
+                            }
+                        </div>
                     </div>
                 </section>
             </main>
