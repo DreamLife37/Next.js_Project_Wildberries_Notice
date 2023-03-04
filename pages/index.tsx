@@ -27,10 +27,7 @@ export interface Price {
 
 
 export default function Home() {
-
     const [id, setId] = useState<string>('')
-    console.log(id)
-
     const client = useQueryClient()
     const {isLoading, data, error, isSuccess} = useQuery({
         queryFn: () => ItemService.getAll(),
@@ -39,7 +36,6 @@ export default function Home() {
             console.log('err.message', err.message)
         }
     })
-    console.log(data);
 
     const deleteItem = useMutation({
         mutationFn: (id: number) => ItemService.deleteOne(id),
@@ -65,7 +61,6 @@ export default function Home() {
             if (oldPrice < newPrice) return textPriceChanged = `↑ на ${percentageChange} %`
         }
     }
-
 
     return (
         <>
