@@ -26,7 +26,7 @@ export interface Price {
 }
 
 
-export default function Home({items}) {
+export default function Home() {
 
     const [id, setId] = useState<string>('')
     console.log(id)
@@ -35,24 +35,24 @@ export default function Home({items}) {
     const {isLoading, data, error, isSuccess} = useQuery({
         queryFn: () => ItemService.getAll(),
         queryKey: ['item list'],
-        onError: (err) => {
+        onError: (err: any) => {
             console.log('err.message', err.message)
         }
     })
     console.log(data);
 
     const deleteItem = useMutation({
-        mutationFn: (id) => ItemService.deleteOne(id),
+        mutationFn: (id: number) => ItemService.deleteOne(id),
         onSuccess: (data) => {
             client.invalidateQueries({queryKey: ['item list']});
         }
     });
 
     const addItem = useMutation({
-        mutationFn: (id) => ItemService.addItem(id),
+        mutationFn: (id: number) => ItemService.addItem(id),
         onSuccess: () => {
             client.invalidateQueries({queryKey: ['item list']}),
-            setId('')
+                setId('')
         }
     })
 
