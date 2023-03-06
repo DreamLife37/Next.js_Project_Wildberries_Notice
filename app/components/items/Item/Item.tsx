@@ -13,20 +13,13 @@ type PropsType = {
 }
 
 export const Item: FC<PropsType> = ({item}) => {
-    const {data, error, isSuccess, isLoading} = useQuery({
-        queryFn: () => ItemService.getAll(),
-        queryKey: ['item list'],
-        onError: (err: any) => {
-            console.log('err.message', err.message)
-        }
-    })
-
     const client = useQueryClient()
 
-    const {mutate} = useMutation({
+    const {mutate, isLoading} = useMutation({
         mutationFn: (id: number) => ItemService.deleteOne(id),
+
         onSuccess: () => {
-            toast(`Товар успешно удален`)
+            toast.success(`Товар успешно удален`)
             client.invalidateQueries({queryKey: ['item list']});
         }
     });

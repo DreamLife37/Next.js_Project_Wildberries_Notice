@@ -1,13 +1,12 @@
+.list_items {
+    background-color: #fdfdfd;
+    display: flex;
+}
 
 .wrapper {
     padding: 5px;
     max-width: 1160px;
     margin: 0 auto;
-}
-
-.list_items {
-    background-color: #fdfdfd;
-    display: flex;
 }
 
 .list_items__title {
