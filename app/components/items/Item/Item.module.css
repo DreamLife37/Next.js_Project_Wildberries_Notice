@@ -1,0 +1,57 @@
+
+.wrapper {
+    padding: 5px;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.item {
+    background-color: #f1f1f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0 16px 16px;
+    margin: 6px 0 6px 6px;
+    border-radius: 5px;
+}
+
+.item__id {
+    font-size: 14px;
+    color: #515151bf;
+}
+
+.prices {
+    padding-left: 16px;
+    width: 40%;
+    text-align: right;
+    margin-left: auto;
+}
+
+.newPrice {
+    font-weight: 700;
+}
+
+.oldPrice {
+    text-decoration: line-through;
+}
+
+.priceDown {
+    color: #7fb70d;
+}
+
+.priceUp {
+    color: brown;
+}
+
+.removeOne {
+    cursor: pointer;
+
+}
+
+.removeOne svg {
+    fill: #d280d2
+}
+
+.removeOne svg:hover {
+    fill: #5b085b
+}

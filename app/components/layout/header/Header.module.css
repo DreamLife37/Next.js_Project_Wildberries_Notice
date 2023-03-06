@@ -1,0 +1,25 @@
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+}
+
+.wrapper {
+    padding: 5px;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.header__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 50px;
+}
+
+.header__logo_img path {
+    fill: white;
+}
