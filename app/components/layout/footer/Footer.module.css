@@ -1,0 +1,11 @@
+.footer {
+    background-color: #481173;
+    height: 100px;
+    color: white;
+}
+
+.wrapper {
+    padding: 5px;
+    max-width: 1160px;
+    margin: 0 auto;
+}
