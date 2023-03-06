@@ -1,0 +1,37 @@
+.skeletons {
+    background-color: #f1f1f5;
+    padding: 10px;
+    margin: 6px 0 6px 6px;
+    border-radius: 5px;
+}
+
+
+.skeleton {
+    --color: rgb(223, 223, 223);
+    background-repeat: no-repeat;
+    height: 80px;
+    animation: fade 1s linear infinite alternate;
+
+    background-image: linear-gradient(var(--color) 30px, transparent 0),
+    linear-gradient(var(--color) 20px, transparent 0),
+    linear-gradient(var(--color) 50px, transparent 0);
+
+    background-size: 65% 30px,
+    25% 20px,
+    15% 50px;
+
+    background-position: 10px 10px,
+    10px 50px,
+    90% 15px;
+
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
