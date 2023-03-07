@@ -5,7 +5,6 @@
     border-radius: 5px;
 }
 
-
 .skeleton {
     --color: rgb(223, 223, 223);
     background-repeat: no-repeat;
@@ -23,7 +22,6 @@
     background-position: 10px 10px,
     10px 50px,
     90% 15px;
-
 }
 
 @keyframes fade {

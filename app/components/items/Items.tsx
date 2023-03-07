@@ -1,10 +1,10 @@
 import {FC} from "react";
 import styles from "./Items.module.css";
-import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {useQuery} from "@tanstack/react-query";
 import {ItemService} from "../../services/item.service";
 import {Item} from "./Item/Item";
-import {toast} from "react-toastify";
 import {Skeletons} from "@/app/components/skeletons/Skeletons";
+import Image from "next/image";
 
 export const Items: FC = () => {
     const {data, error, isSuccess, isLoading} = useQuery({
@@ -14,8 +14,6 @@ export const Items: FC = () => {
             console.log('err.message', err.message)
         }
     })
-
-    // const isLoading = true
 
     return <section className={styles.list_items}>
         <div className={styles.wrapper}>
@@ -27,7 +25,13 @@ export const Items: FC = () => {
                         ? data.data.map((item) => {
                             return <Item key={item._id} item={item}/>
                         })
-                        : <div>Товары не найдены</div>
+                        : <div className={styles.noItems__wrapper}>
+                            <Image src="/noItems.gif"
+                                   width={256}
+                                   height={256}
+                                   alt={'No Items'}
+                                   draggable={false}/>
+                        </div>
                 }
             </div>
         </div>

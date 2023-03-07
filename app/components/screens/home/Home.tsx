@@ -27,8 +27,6 @@ export default function Home() {
         }
     })
 
-    console.log('isLoading', isLoading)
-
 
     // const deleteItem =(id:number)=>{
     //     const myPromise = ItemService.deleteOne(id)
@@ -50,15 +48,6 @@ export default function Home() {
     //         error: 'Promise rejected 🤯'
     //     }
     // )
-
-
-    // useEffect(() => {
-    //     toast.promise(store, {
-    //         pending: "logging in ...",
-    //         success: "Welcome user",
-    //         error: "Error logging in"
-    //     });
-    // },[]);
 
     return (
         <>
@@ -96,19 +85,16 @@ export default function Home() {
                                    draggable={false}/>
                         </div>
                         <div className={styles.added_form}>
-                            <p className={styles.added_form__wrap}>
+                            <div className={styles.added_form__wrap}>
                                 <input type="text" className={styles.added_form__field}
                                        placeholder="Введи артикул для отслеживания"
                                        value={id}
                                        onChange={(e) => setId(e.currentTarget.value)}/>
-                                <button disabled={!id} className={styles.added_form__button}
-                                        onClick={() => mutate(+id)}>
-                                    Добавить
+                                <button disabled={!id || isLoading} className={styles.added_form__button}
+                                        onClick={() => mutate(+id)} >
+                                    {isLoading ? <p className={isLoading ? styles.added_button__loading : ''}/> : <p>Добавить</p>}
                                 </button>
-                                <button className={styles.added_form__button} onClick={() => toast.success(`ТЕСТ`)}>
-                                    Тест
-                                </button>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </section>

@@ -1,11 +1,14 @@
 .item {
     background-color: #f1f1f5;
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 0 16px 16px;
-    margin: 6px 0 6px 6px;
+    padding: 16px;
+    margin: 6px;
     border-radius: 5px;
+    display: grid;
+    grid-template-columns: 60% 80px 40px;
+    grid-gap: 10px;
+    grid-auto-rows: minmax(70px,auto);
 }
 
 .item__id {
@@ -14,10 +17,7 @@
 }
 
 .prices {
-    padding-left: 16px;
-    width: 40%;
-    text-align: right;
-    margin-left: auto;
+
 }
 
 .newPrice {
@@ -38,7 +38,6 @@
 
 .removeOne {
     cursor: pointer;
-
 }
 
 .removeOne svg {
@@ -47,4 +46,30 @@
 
 .removeOne svg:hover {
     fill: #5b085b
+}
+
+.wrapper__button {
+    width: 60px;
+}
+
+.added_button__loading {
+    height: 30px;
+    width: 30px;
+    border: 3px solid #BFC0C5;
+    border-radius: 50%;
+    border-left-color: #cb11ab;
+    animation: rotation 1.5s linear infinite;
+}
+
+.added_form__button {
+    padding-left: 10px;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

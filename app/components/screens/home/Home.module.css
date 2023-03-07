@@ -103,8 +103,10 @@
 }
 
 .added_form__button {
+    width: 190px;
     font-family: 'Noto Sans', sans-serif;
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-left: 30px;
     padding: 15px 35px;
@@ -122,7 +124,28 @@
 
 .added_form__button:disabled {
     cursor: inherit;
+    /*background-color: #23221a;*/
+    background-color: rgba(255, 239, 128, 0.79);
+}
+
+.added_button__loading {
+    height: 30px;
+    width: 30px;
+    border: 3px solid #fbfcff;
+    border-radius: 50%;
+    border-left-color: #cb11ab;
+    animation: move 1.5s linear infinite;
+}
+
+.added_button__wrapper:disabled {
+    cursor: inherit;
     background-color: #ffef80;
+}
+
+@keyframes move {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /*Intro styles end*/
