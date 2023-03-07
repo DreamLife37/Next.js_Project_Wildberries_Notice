@@ -96,19 +96,20 @@ export default function Home() {
                                    draggable={false}/>
                         </div>
                         <div className={styles.added_form}>
-                            <p className={styles.added_form__wrap}>
+                            <div className={styles.added_form__wrap}>
                                 <input type="text" className={styles.added_form__field}
                                        placeholder="Введи артикул для отслеживания"
                                        value={id}
                                        onChange={(e) => setId(e.currentTarget.value)}/>
                                 <button disabled={!id} className={styles.added_form__button}
-                                        onClick={() => mutate(+id)}>
-                                    Добавить
+                                        onClick={() => mutate(+id)} >
+                                    <p className={isLoading ? styles.added_button__loading : ''}/>
+                                    <p>Добавить</p>
                                 </button>
-                                <button className={styles.added_form__button} onClick={() => toast.success(`ТЕСТ`)}>
-                                    Тест
-                                </button>
-                            </p>
+                                {/*<button className={styles.added_form__button} onClick={() => toast.success(`ТЕСТ`)}>*/}
+                                {/*    Тест*/}
+                                {/*</button>*/}
+                            </div>
                         </div>
                     </div>
                 </section>
