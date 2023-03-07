@@ -26,7 +26,6 @@ export const Item: FC<PropsType> = ({item}) => {
 
     const oldPriceData = item.price[item.price.length - 2]
     const newPriceData = item.price[item.price.length - 1]
-    const isLoading1 = true
     return <>
         <div className={styles.item}>
             <Link

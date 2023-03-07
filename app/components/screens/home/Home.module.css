@@ -103,8 +103,10 @@
 }
 
 .added_form__button {
+    width: 190px;
     font-family: 'Noto Sans', sans-serif;
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-left: 30px;
     padding: 15px 35px;
@@ -122,16 +124,16 @@
 
 .added_form__button:disabled {
     cursor: inherit;
-    background-color: #ffef80;
+    /*background-color: #23221a;*/
+    background-color: rgba(255, 239, 128, 0.79);
 }
 
 .added_button__loading {
     height: 30px;
     width: 30px;
-    border: 3px solid #BFC0C5;
+    border: 3px solid #fbfcff;
     border-radius: 50%;
-    margin-right: 20px;
-    border-left-color: #cb11ab ;
+    border-left-color: #cb11ab;
     animation: move 1.5s linear infinite;
 }
 

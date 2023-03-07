@@ -14,10 +14,16 @@
     font-weight: 500;
     color: #18191c;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .list_items__wrapper {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+}
+
+.noItems__wrapper {
+    display: flex;
+    justify-content: center;
 }
