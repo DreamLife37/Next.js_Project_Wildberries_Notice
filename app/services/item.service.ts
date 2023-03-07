@@ -3,7 +3,7 @@ import {IItem} from "@/app/components/items/Item/item.interface.";
 
 
 // const API_URL = 'http://localhost:5000/api'
-const API_URL = 'https://elegant-apron-ray.cyclic.app/api/1'
+const API_URL = 'https://elegant-apron-ray.cyclic.app/api/'
 
 axios.defaults.baseURL = API_URL
 
