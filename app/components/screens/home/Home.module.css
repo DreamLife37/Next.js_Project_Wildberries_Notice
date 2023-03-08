@@ -77,7 +77,7 @@
     font-weight: 500;
     font-size: 18px;
     color: white;
-    padding-bottom: 16px;
+    padding-bottom: 10px;
 }
 
 .added_form__field::placeholder {
