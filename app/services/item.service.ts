@@ -1,7 +1,7 @@
 import axios from "axios";
 import {IItem} from "@/app/components/items/Item/item.interface.";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL
+const API_URL = 'https://nodejswildberriesnotice-production.up.railway.app/api/'
 
 axios.defaults.baseURL = API_URL
 
