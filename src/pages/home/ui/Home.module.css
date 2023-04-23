@@ -1,0 +1,237 @@
+/*Header styles start*/
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    /*background-color: beige;*/
+}
+
+.wrapper {
+    padding: 5px;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.header__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 50px;
+}
+
+.header__logo_img path {
+    fill: white;
+}
+
+/*Header styles end*/
+
+
+/*Intro styles start*/
+.intro {
+    min-height: 100vh;
+    background: linear-gradient(to right, #cb11ab 0, #481173 100%) no-repeat;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.into__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 70px;
+}
+
+.into__title {
+    font-size: 70px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 22px;
+}
+
+.into__subtitle {
+    font-size: 35px;
+    font-weight: 500;
+    color: #ffffff99
+}
+
+.intro__phone {
+    height: 400px;
+}
+
+.added_form__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.added_form__field {
+    background: transparent;
+    width: 297px;
+    background-size: 20px;
+    border: 0;
+    border-bottom: 2px solid #BFC0C5;
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+    padding-bottom: 10px;
+}
+
+.added_form__field::placeholder {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: white;
+}
+
+.added_form__field:active {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.added_form__field:hover {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.added_form__field:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.added_form__button {
+    width: 190px;
+    font-family: 'Noto Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    padding: 15px 35px;
+    font-weight: 500;
+    font-size: 24px;
+    border: 0;
+    background-color: #ffef80;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.added_form__button:hover, .added-form__button:focus, .added-form__button:active {
+    transition: background-color 0.5s;
+    background-color: rgba(255, 239, 128, 0.79);
+}
+
+.added_form__button:disabled {
+    cursor: inherit;
+    background-color: rgba(255, 239, 128, 0.79);
+}
+
+.added_button__loading {
+    height: 30px;
+    width: 30px;
+    border: 3px solid #fbfcff;
+    border-radius: 50%;
+    border-left-color: #cb11ab;
+    animation: move 1.5s linear infinite;
+}
+
+.added_button__wrapper:disabled {
+    cursor: inherit;
+    background-color: #ffef80;
+}
+
+@keyframes move {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*Intro styles end*/
+
+
+.list_items {
+    background-color: #fdfdfd;
+    display: flex;
+}
+
+.list_items__title {
+    font-size: 35px;
+    font-weight: 500;
+    color: #18191c;
+    margin-bottom: 30px;
+}
+
+.list_items__wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.item {
+    background-color: #f1f1f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0 16px 16px;
+    margin: 6px 0 6px 6px;
+    border-radius: 5px;
+}
+
+.item__id {
+    font-size: 14px;
+    color: #515151bf;
+}
+
+.prices {
+    padding-left: 16px;
+    width: 40%;
+    text-align: right;
+    margin-left: auto;
+}
+
+.newPrice {
+    font-weight: 700;
+}
+
+.oldPrice {
+    text-decoration: line-through;
+}
+
+.removeOne {
+    cursor: pointer;
+}
+
+.removeOne svg {
+    fill: #d280d2
+}
+
+.removeOne svg:hover {
+    fill: #5b085b
+}
+
+@media (max-width: 790px) {
+    .into__wrapper {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 523px) {
+    .added_form__button {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .into__title {
+        font-size: 50px;
+        margin-top: 20px;
+    }
+
+    .intro__phone {
+        margin-top: 10px;
+    }
+}
