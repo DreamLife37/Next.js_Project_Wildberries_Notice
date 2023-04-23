@@ -1,4 +1,4 @@
-import {Layout} from '@/app/components/layout/Layout'
+import { Layout } from '@/app/ui/Layout'
 import '@/styles/globals.css'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import type {AppProps} from 'next/app'
