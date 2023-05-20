@@ -47,6 +47,8 @@
 }
 
 .into__title {
+    z-index: 10;
+    position: relative;
     font-size: 70px;
     font-weight: 800;
     color: rgba(255, 255, 255, 0.9);
@@ -56,11 +58,36 @@
 .into__subtitle {
     font-size: 35px;
     font-weight: 500;
-    color: #ffffff99
+    color: #fdb95b;
+    position: relative;
+}
+
+.into__subtitleImg {
+    z-index: 0;
+    position: absolute;
+    top: -285px;
+    bottom: 0;
+    left: 45px;
+    opacity: 0.6;
+}
+
+.into__subtitleImg svg {
+    width: 300px;
+}
+
+.into__subtitleText {
+    position: relative;
+    z-index: 10;
+    transition: color 1s;
+}
+
+.into__subtitleText:hover {
+    color: #4b1175;
 }
 
 .intro__phone {
     height: 400px;
+    z-index: 10;
 }
 
 .added_form__wrap {

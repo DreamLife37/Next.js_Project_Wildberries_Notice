@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 400">
+    <path d="M140.20925903320312,236.7712860107422C176.38264973958334,228.6995391845703,322.2720235188802,187.59341939290366,357.2496032714844,188.34080505371094C392.22718302408856,189.08819071451822,308.5201772054036,240.20926157633463,350.0747375488281,241.25559997558594C391.6292978922526,242.30193837483725,563.8265940348307,202.39162953694662,606.5769653320312,194.61883544921875"
+          fill="none" stroke-width="25" stroke="url(&quot;#SvgjsLinearGradient1001&quot;)"
+          stroke-linecap="round"></path>
+    <defs>
+        <linearGradient id="SvgjsLinearGradient1001">
+            <stop stop-color="hsl(37, 99%, 67%)" offset="0"></stop>
+            <stop stop-color="hsl(316, 73%, 52%)" offset="1"></stop>
+        </linearGradient>
+    </defs>
+</svg>
